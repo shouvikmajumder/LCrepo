@@ -1,15 +1,24 @@
 # contains duplicate 
 # Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
-# Two- sum
+# Group Anagrams
 
-def twoSum(self, nums: List[int], target: int) -> List[int]:
+def groupanagrams(strs):
     check = {}
-
-    for index,value in enumerate(nums):
-        diff = target - value
-        if diff in check:
-            return [check[diff],index]
-        check[value] = index
+    outputlst = []
+    for i in strs:
+        x = ",".join(sorted(i))
+        if x not in check:
+            check[x] = [i]
+        elif x in check:
+            check[x].append(i)
+    
+    
+    for i in list(check.values()):
+        outputlst.append(i)
+    return outputlst    
+        
     
 
     #This is O(n) time complexity
+strs = ["act","pots","tops","cat","stop","hat"]
+print(groupanagrams(strs))
